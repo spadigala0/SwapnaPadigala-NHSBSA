@@ -11,10 +11,7 @@ Feature: Eligibility checker
     And Selected "Partner" as "No"
     And Selected "Next"
 
-  Scenario Outline: As a Wales Resident with
-  No claim of benefits and
-  Lives in Care Home and
-  Gets help from local council
+  Scenario Outline: As a Wales Resident with No claim of benefits and Lives in Care Home and Gets help from local council
     Given Selected "benefits and claims" as "No"
     And Selected "Next"
     And Selected "Pregnant or Birth" as "<Pregnant>"
@@ -29,7 +26,7 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "Help from Local Council" as "Yes"
     When Selected "Next"
-    Then Should display success screen with message "You can apply for help with NHS costs"
+    Then Should get Title as "Because you get help from your local council to pay for your care home"
     Examples:
       | Pregnant | Armed Forces | Diabetes | Glaucoma |
       | Yes      | Yes          | Yes      | Yes      |
@@ -38,10 +35,7 @@ Feature: Eligibility checker
       | Yes      | Yes          | No       | Yes      |
       | No       | No           | No       | No       |
 
-  Scenario Outline: As a Wales Resident with
-  No claim of benefits and
-  Lives in Care Home and
-  Doesn't gets help from local council
+  Scenario Outline: As a Wales Resident with No claim of benefits and Lives in Care Home and Doesn't gets help from local council
     Given Selected "benefits and claims" as "No"
     And Selected "Next"
     And Selected "Pregnant or Birth" as "<Pregnant>"
@@ -58,7 +52,7 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "24000 or more in Savings, Investments or Property" as "<Saving/Investments>"
     When Selected "Next"
-    Then Should display success screen with message "You can apply for help with NHS costs"
+    Then Should get Title as "You get help with health costs"
     Examples:
       | Pregnant | Armed Forces | Diabetes | Glaucoma | Saving/Investments |
       | Yes      | Yes          | Yes      | Yes      | Yes                |
@@ -67,9 +61,7 @@ Feature: Eligibility checker
       | Yes      | Yes          | No       | Yes      | No                 |
       | No       | No           | No       | No       | Yes                |
 
-  Scenario Outline: As a Wales Resident with
-  No claim of benefits and
-  Not lives in Care Home
+  Scenario Outline: As a Wales Resident with No claim of benefits and Not lives in Care Home
     Given Selected "benefits and claims" as "No"
     And Selected "Next"
     And Selected "Pregnant or Birth" as "<Pregnant>"
@@ -84,7 +76,7 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "16000 or more in Savings, Investments or Property" as "No"
     And Selected "Next"
-    Then Should display success screen with message "You get help with NHS costs"
+    Then Should get Title as "You get help with health costs"
     Examples:
       | Pregnant | Armed Forces | Diabetes | Glaucoma |
       | Yes      | Yes          | Yes      | Yes      |
@@ -94,10 +86,7 @@ Feature: Eligibility checker
       | No       | No           | No       | No       |
 
 
-  Scenario: As a Wales Resident with
-  Claim of benefits and
-  Get paid Universal Credit and
-  Pay less than 935
+  Scenario: As a Wales Resident with Claim of benefits and Get paid Universal Credit and Pay less than 935
     Given Selected "benefits and claims" as "Yes"
     And Selected "Next"
     And Selected Do you get paid Universal Credit "Yes-Universal"
@@ -106,14 +95,9 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "Is Take home pay for Universal Credit <= 935" as "Yes"
     When Selected "Next"
-    Then Should display success screen with message "You can apply for help with NHS costs"
+    Then Should get Title as "qualifying universal credit you get help paying NHS costs"
 
-  Scenario Outline: As a Wales Resident with
-  Claim of benefits and
-  Get paid Universal Credit and
-  Pay greater than 935 and
-  Lives in Care Home and
-  Get help from local council
+  Scenario Outline: As a Wales Resident with Claim of benefits and Get paid Universal Credit and Pay greater than 935 and Lives in Care Home and Get help from local council
     Given Selected "benefits and claims" as "Yes"
     And Selected "Next"
     And Selected Do you get paid Universal Credit "Yes-Universal"
@@ -129,22 +113,17 @@ Feature: Eligibility checker
     And Selected "Diabetes" as "<Diabetes>"
     And Selected "Next"
     And Selected "Glaucoma" as "<Glaucoma>"
-    When Selected "Next"
+    And Selected "Next"
     And Selected "Lives in Care Home" as "Yes"
     And Selected "Next"
     And Selected "Help from Local Council" as "Yes"
     When Selected "Next"
-    Then Should display success screen with message "You can apply for help with NHS costs"
+    Then Should get Title as "Because you get help from your local council to pay for your care home"
     Examples:
       | Pregnant | Armed Forces | Diabetes | Glaucoma |
       | Yes      | Yes          | Yes      | Yes      |
 
-  Scenario Outline: As a Wales Resident with
-  Claim of benefits and
-  Get paid Universal Credit and
-  Pay greater than 935 and
-  Lives in Care Home and
-  Doesn't get help from local council
+  Scenario Outline: As a Wales Resident with Claim of benefits and Get paid Universal Credit and Pay greater than 935 and Lives in Care Home and Doesn't get help from local council
     Given Selected "benefits and claims" as "Yes"
     And Selected "Next"
     And Selected Do you get paid Universal Credit "Yes-Universal"
@@ -167,17 +146,13 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "24000 or more in Savings, Investments or Property" as "<Saving/Investments>"
     When Selected "Next"
-    Then Should display success screen with message "You can apply for help with NHS costs"
+    Then Should get Title as "You get help with health costs"
     Examples:
       | Pregnant | Armed Forces | Diabetes | Glaucoma | Saving/Investments |
       | Yes      | Yes          | Yes      | Yes      | Yes                |
       | No       | Yes          | No       | Yes      | No                 |
 
-  Scenario Outline: As a Wales Resident with
-  Claim of benefits and
-  Get paid Universal Credit and
-  Pay greater than 935 and
-  Doesn't Lives in Care Home
+  Scenario Outline: As a Wales Resident with Claim of benefits and Get paid Universal Credit and Pay greater than 935 and Doesn't Lives in Care Home
     Given Selected "benefits and claims" as "Yes"
     And Selected "Next"
     And Selected Do you get paid Universal Credit "Yes-Universal"
@@ -198,17 +173,13 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "16000 or more in Savings, Investments or Property" as "No"
     And Selected "Next"
-    Then Should display success screen with message "You get help with NHS costs"
+    Then Should get Title as "You get help with health costs"
     Examples:
       | Pregnant | Armed Forces | Diabetes | Glaucoma |
       | Yes      | Yes          | Yes      | Yes      |
       | No       | Yes          | Yes      | Yes      |
 
-  Scenario: As a Wales Resident with
-  Claim of benefits and
-  Get paid Universal Credit and
-  (LCW/LCWRA) as No and
-  Pay £435 or less
+  Scenario: As a Wales Resident with Claim of benefits and Get paid Universal Credit and (LCW/LCWRA) as No and Pay £435 or less
     Given Selected "benefits and claims" as "Yes"
     And Selected "Next"
     And Selected Do you get paid Universal Credit "Yes-Universal"
@@ -217,15 +188,9 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "Was your take-home pay for your last Universal Credit period £435 or less?" as "Yes"
     When Selected "Next"
-    Then Should display success screen with message "You get help with NHS costs"
+    Then Should get Title as "qualifying universal credit you get help paying NHS costs"
 
-  Scenario Outline: As a Wales Resident with
-  Claim of benefits and
-  Get paid Universal Credit and
-  (LCW/LCWRA) as No and
-  Pay £435 or less as No and
-  Doesn't lives in care home and
-  Savings/Investments are < 16000
+  Scenario Outline: As a Wales Resident with Claim of benefits and Get paid Universal Credit and (LCW/LCWRA) as No and Pay £435 or less as No and Doesn't lives in care home and Savings/Investments are < 16000
     Given Selected "benefits and claims" as "Yes"
     And Selected "Next"
     And Selected Do you get paid Universal Credit "Yes-Universal"
@@ -246,18 +211,12 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "16000 or more in Savings, Investments or Property" as "No"
     And Selected "Next"
-    Then Should display success screen with message "You get help with NHS costs"
+    Then Should get Title as "You get help with health costs"
     Examples:
       | Pregnant | Armed Forces | Diabetes | Glaucoma |
       | Yes      | Yes          | Yes      | Yes      |
 
-  Scenario Outline: As a Wales Resident with
-  Claim of benefits and
-  Get paid Universal Credit and
-  (LCW/LCWRA) as No and
-  Pay £435 or less as No and
-  Lives in care home and
-  Gets help from local council
+  Scenario Outline: As a Wales Resident with Claim of benefits and Get paid Universal Credit and (LCW/LCWRA) as No and Pay £435 or less as No and Lives in care home and Gets help from local council
     Given Selected "benefits and claims" as "Yes"
     And Selected "Next"
     And Selected Do you get paid Universal Credit "Yes-Universal"
@@ -278,19 +237,13 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "Help from Local Council" as "Yes"
     When Selected "Next"
-    Then Should display success screen with message "You get help with NHS costs"
+    Then Should get Title as "Because you get help from your local council to pay for your care home"
     Examples:
       | Pregnant | Armed Forces | Diabetes | Glaucoma |
       | Yes      | Yes          | Yes      | Yes      |
       | Yes      | No           | Yes      | No       |
 
-  Scenario Outline: As a Wales Resident with
-  Claim of benefits and
-  Get paid Universal Credit and
-  (LCW/LCWRA) as No and
-  Pay £435 or less as No and
-  Lives in care home and
-  Doesn't gets help from local council
+  Scenario Outline: As a Wales Resident with Claim of benefits and Get paid Universal Credit and (LCW/LCWRA) as No and Pay £435 or less as No and Lives in care home and Doesn't gets help from local council
     Given Selected "benefits and claims" as "Yes"
     And Selected "Next"
     And Selected Do you get paid Universal Credit "Yes-Universal"
@@ -313,43 +266,33 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "24000 or more in Savings, Investments or Property" as "<Saving/Investments>"
     When Selected "Next"
-    Then Should display success screen with message "You get help with NHS costs"
+    Then Should get Title as "You get help with health costs"
     Examples:
       | Pregnant | Armed Forces | Diabetes | Glaucoma | Saving/Investments |
       | Yes      | Yes          | Yes      | Yes      | Yes                |
       | No       | Yes          | No       | Yes      | No                 |
 
 
-  Scenario Outline: As a Wales Resident with
-  Claim of benefits and
-  Not yet get paid Universal Credit and
-  Not Working Tax Credit on its own and
-  House hold income < 15276
+  Scenario Outline: As a Wales Resident with Claim of benefits and Not yet get paid Universal Credit and Not Working Tax Credit on its own and House hold income < 15276
     Given Selected "benefits and claims" as "Yes"
     And Selected "Next"
     And Selected Do you get paid Universal Credit "Not-yet"
     And Selected "Next"
     And Selected "Next"
     And Check "taxCredit"
-    When Selected "Next"
+    And Selected "Next"
     And Check "<Tax Credit Type>"
-    When Selected "Next"
+    And Selected "Next"
     And Selected "Is your household income £15,276 or less?" as "Yes"
     When Selected "Next"
-    Then Should display success screen with message "You can apply for help with NHS costs"
+    Then Should get Title as "... get help paying NHS[ costs]"
     Examples:
       | Tax Credit Type            |
       | workingChildTaxCredit      |
       | workingDisabilityTaxCredit |
       | childTaxCredit             |
 
-  Scenario Outline: As a Wales Resident with
-  Claim of benefits and
-  Not yet get paid Universal Credit and
-  Not Working Tax Credit on its own and
-  House hold income > 15276 and
-  Lives in care home and
-  Gets help from local council
+  Scenario Outline: As a Wales Resident with Claim of benefits and Not yet get paid Universal Credit and Not Working Tax Credit on its own and House hold income > 15276 and Lives in care home and Gets help from local council
     Given Selected "benefits and claims" as "Yes"
     And Selected "Next"
     And Selected Do you get paid Universal Credit "Not-yet"
@@ -373,7 +316,7 @@ Feature: Eligibility checker
     And Selected "Next"
     And Selected "Help from Local Council" as "Yes"
     When Selected "Next"
-    Then Should display success screen with message "You can apply for help with NHS costs"
+    Then Should get Title as "Because you get help from your local council to pay for your care home"
     Examples:
       | Tax Credit Type            | Pregnant | Armed Forces | Diabetes | Glaucoma |
       | workingChildTaxCredit      | Yes      | Yes          | Yes      | Yes      |

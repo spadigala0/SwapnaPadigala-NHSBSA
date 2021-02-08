@@ -68,4 +68,9 @@ public class EligibilityCheckerStepdefs extends BaseStepdefs {
     public void check(String checkBox) {
         eligibilityCheckerPage.selectLabelByCSSAndClick(checkBox);
     }
+
+    @Then("Should get Title as {string}")
+    public void shouldGetTitleAs(String pageTitle) {
+        // Assert.assertEquals(pageTitle, eligibilityCheckerPage.getTitle());
+    }
 }

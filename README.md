@@ -26,4 +26,4 @@ mvn clean test -DBROWSER=firefox
 
 ## Checking Test Reports
 After running the above step you can find the reports in following directory.
-``target/cucumber-reports`` or open a file from ``target/cucumber-reports/index.html``.
+``test-output/Spark/ExtentSpark.html``
